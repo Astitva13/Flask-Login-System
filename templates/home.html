@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 380px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        a {
+            display: inline-block;
+            margin: 8px;
+            padding: 10px 16px;
+            background: #0077ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            background: #005fcc;
+        }
+
+        .logout {
+            background: #d9534f;
+        }
+
+        .logout:hover {
+            background: #b52b27;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    {% if current_user.is_authenticated %}
+        <h1>Welcome, {{ current_user.username }} 👋</h1>
+        <p>You are logged in.</p>
+
+        <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+
+    {% else %}
+        <h1>Welcome to the Flask Login App</h1>
+        <p>Please login or create an account.</p>
+
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
